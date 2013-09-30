@@ -13,8 +13,8 @@ def test(prods):
 
 # get file name with productions, run test with productions string
 if __name__ == '__main__':
-    #prFile = raw_input("type production file name: ")
-    #f = open(prFile, 'r')
-    f = open('MicroGrammar2.txt', 'r')
+    prFile = raw_input("type production file name: ")
+    f = open(prFile, 'r')
+    #f = open('MicroGrammar2.txt', 'r')
     pr = f.read()
     test(pr)
