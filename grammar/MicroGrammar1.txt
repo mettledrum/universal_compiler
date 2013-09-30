@@ -1,0 +1,22 @@
+<program> —> begin <stmtList> end
+<stmtList> —> <statement> <statementTail>
+<statementTail> —> <stmtList>
+<statement tail> —> lambda
+<statement> —> Id := <expression> ;
+<statement> —> read(<idList>) ;
+<statement> —> write(<exprList>) ;
+<idList> —> Id <idTail>
+<idTail> —> , <idList>
+<idTail> —> lambda
+<exprList> —> <expression> <expressionTail>
+<expressionTail> —> , <exprList>
+<expressionTail> —> lambda
+<expression> —> <primary> <primaryTail>
+<primaryTail> —> <addOp> <expression>
+<primaryTail> —> lambda
+<primary> —> ( <expression> )
+<primary> —> Id
+<primary> —> IntLiteral
+<addOp> —> +
+<addOp> —> —
+<systemGoal> —> <program> $
