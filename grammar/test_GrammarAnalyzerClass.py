@@ -10,11 +10,12 @@ def test(prods):
     print "Symbols:\t", ga.allSymbols
     print "Terminals:\t", ga.Terms
     print "non-Terms:\t", ga.nonTerms
+    print '\n'
 
 # get file name with productions, run test with productions string
 if __name__ == '__main__':
     prFile = raw_input("type production file name: ")
     f = open(prFile, 'r')
-    #f = open('MicroGrammar2.txt', 'r')
+    #f = open('MG3.txt', 'r')
     pr = f.read()
     test(pr)
