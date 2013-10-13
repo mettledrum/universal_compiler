@@ -10,6 +10,7 @@ from collections import defaultdict     # "multidict' functionality
 
 # breaks up predicate rules into pieces
 # pr MUST be formatted with \n between rules, and ONE ' ' between symbols
+# grammars MUST be LL(1) sets
 class GrammarAnalyzerClass:
   # constructor, takes pr, generates data member lists
   # takes string representing productions
@@ -44,6 +45,9 @@ class GrammarAnalyzerClass:
     self.firstSet = defaultdict(set)
     self.followSet = defaultdict(set)
     self.predictSet = defaultdict(set)
+    
+    # table of productions and rules
+    self.predictTable = defaultdict(dict)
 
   # remove duplicates of lists using set functions
   # helps constructor
@@ -240,7 +244,7 @@ class GrammarAnalyzerClass:
   # fill based on first follow and lambda as an elem
   def fillPredictSet(self):
     for p in range(self.prodCount):
-      #for symb in self.RHS[p]:
+      # for symb in self.RHS[p]:
       self.predictSet[self.LHS[p]] |= self.firstSet[self.RHS[p][0]]
 
       # see if 'lambda's in it, if so, add followSet
@@ -248,6 +252,23 @@ class GrammarAnalyzerClass:
         self.predictSet[self.LHS[p]] |= self.followSet[self.LHS[p]]
         self.predictSet[self.LHS[p]].discard('lambda')
         
-
-
+  """------------------------------------------------------------------------"""
+        
+  # makes state table from production and predict sets
+  # table is a nested dict: defaultdict(dict)
+  # similar to fillPredictSet() flow through productions
+  # {non_terms : {terms : prod#, ...}, ...}
+  def tableGenerator(self):
+    for p in range(self.prodCount):
+      # assign production number to table
+      for elem in self.firstSet[self.RHS[p][0]]:
+        self.predictTable[self.LHS[p]].update({elem : p })
+      # if lambda is in it, do follow set of LHS
+      if 'lambda' in self.firstSet[self.RHS[p][0]]:
+        # delete lambda
+        self.predictTable[self.LHS[p]].pop('lambda')
+        # add terminal pairs in
+        for elem in self.followSet[self.LHS[p]]:
+          print "the elem:\t", elem, "in:\n", self.followSet[self.LHS[p]]
+          self.predictTable[self.LHS[p]].update({elem : p })
 

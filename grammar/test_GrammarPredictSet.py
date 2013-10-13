@@ -14,7 +14,7 @@ def test(prods):
     print "\nnon-Terms:\t", ga.nonTerms
 
     ga.markLambda()
-    print "derivesLambda:\t", ga.derivesLambda
+    print "\nderivesLambda:\t", ga.derivesLambda
 
     ga.fillFirstSet()
     print "\nfillSet:"
@@ -33,6 +33,12 @@ def test(prods):
     print "\npredictSet:"
     for elem in ga.predictSet.iteritems():
         print elem
+        
+    # run tableGen
+    ga.tableGenerator()
+    print "\ntable:"
+    for elem in ga.predictTable.iteritems():
+      print elem
 
 # get file name with productions, run test with productions string
 if __name__ == '__main__':
