@@ -1,60 +1,56 @@
 # Andrew Hoyle
 
+# get class modules from sub-directories
 from grammar.GrammarAnalyzerClass import GrammarAnalyzerClass
+from scanner.ScannerClass import ScannerClass
+#from ParserClass import ParserClass
 
-# runs ga methods, prints their final data member lists when made
-# pass it the start file
-def test(prods):
+# instantiates scanner, ga,
+# passes CLEANED scanner list to parser
+def test(prods, user_code_lines):
+    # run the ga to populate its data members
     ga = GrammarAnalyzerClass(prods)
-    print "Productions:\t", ga.prodList
-    print "\nLHS:\t\t", ga.LHS
-    print "\nRHS:\t\t", ga.RHS
-    print "\nSymbols:\t", ga.allSymbols
-    print "\nTerminals:\t", ga.Terms
-    print "\nnon-Terms:\t", ga.nonTerms
-
     ga.markLambda()
-    print "\nderivesLambda:\t", ga.derivesLambda
-
     ga.fillFirstSet()
-    print "\nfillSet:"
-    for elem in ga.firstSet.iteritems():
-        print elem
-    
-    # gotta pass method start symbol
-    # NOTE: for customizing start symbol
-    #st_sym = raw_input("\ntype start symbol: ")
+    # NOTE: starting symbol for prod
     st_sym = "<systemGoal>"
     ga.fillFollowSet(st_sym)
-    print "\nfollowSet:"
-    for elem in ga.followSet.iteritems():
-        print elem
-
-    # run predict
     ga.fillPredictSet()
-    print "\npredictSet:"
-    for elem in ga.predictSet.iteritems():
-        print elem
-        
-    # run tableGen, T(X,a)
     ga.tableGenerator()
-    print "\ntable:"
-    for elem in ga.predictTable.iteritems():
-      print elem
 
-    # test accessing an elem of tableGenerator
-    #print ga.predictTable["<statement>"]["read"]
+    # instantiate scanner
+    sc = ScannerClass(user_code_lines)
+    # list to hold the output for error checking
+    scan_out = []
+    # run UNTIL EOF symbol found
+    # NOTE: returns triple of info about token passed
+    while sc.code[0] != '$':
+        scan_out.append(sc.Scanner()[2])
 
-    # test the LLDriver
-    #print "\ndriver:"
-    #ga.LLDriver(st_sym)
+    # NOTE: cleans scanner list
+    scan_out_clean = cleaner(scan_out)
+    print scan_out_clean
+
+    # give CLEANED scanner list to parser object
+
+# cleans that list of junk using token names from scanner
+# this should be a scanner function maybe
+def cleaner(token_list):
+    while 'EmptySpace' in token_list:
+        token_list.remove('EmptySpace')
+    while 'Comment' in token_list:
+        token_list.remove('Comment')
+    return token_list
 
 # get file name with productions, run test with productions string
 if __name__ == '__main__':
-    # NOTE: for customizing grammar input
-    #prFile = raw_input("type production file name: ")
-    #f = open(prFile, 'r')
-    f = open('grammar/MG1.txt', 'r')
-    pr = f.read()
-    test(pr)
+    # grammar production rules
+    f_g = open('grammar/MG1.txt', 'r')
+    # scanner code
+    f_s = open('scanner/code1.txt', 'r')
+    prods = f_g.read()
+    user_code = f_s.read()
+
+    # pass to the tester
+    test(prods, user_code)
 
