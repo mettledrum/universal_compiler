@@ -118,6 +118,15 @@ class ScannerClass:
             # NOTE: then make changes to token_code here
         return token_code
 
+    # used for checking if word is reserved by Scanner
+    # NOTE: changes token_name in triple to be the reserved word if
+    #  found in self.res_word
+    def ResCheck(self, token_to_check):
+        if token_to_check in self.res_words:
+            return True
+        else:
+            return False
+
     # action table and key drive its next move
     # state 0 means keep going, Scanner makes recursive call
     # NOTE: returns at triple with (token_code, text_from_buffer, token_name)
@@ -157,8 +166,12 @@ class ScannerClass:
                 self.ConsumeChar()
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
-                print self.token_dict[token_code]              
-                return (token_code, token_text, self.token_dict[token_code])
+                #print self.token_dict[token_code]
+                # NOTE: checks res_word, changes third part of tuple if True
+                if self.ResCheck(token_text):
+                    return (token_code, token_text, token_text)
+                else:
+                    return (token_code, token_text, self.token_dict[token_code])
 
             elif current_action == "HaltNoAppend":
                 token_code = self.LookUpCode(state, self.CurrentChar())
@@ -166,17 +179,26 @@ class ScannerClass:
                 self.ConsumeChar()
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
-                print self.token_dict[token_code] 
-                return (token_code, token_text, self.token_dict[token_code])
+                #print self.token_dict[token_code] 
+                # NOTE: checks res_word, changes third part of tuple if True
+                if self.ResCheck(token_text):
+                    return (token_code, token_text, token_text)
+                else:
+                    return (token_code, token_text, self.token_dict[token_code])
 
             elif current_action == "HaltReuse":
                 token_code = self.LookUpCode(state, self.CurrentChar())
                 token_code = self.CheckExceptions(token_code, token_text)
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
-                print self.token_dict[token_code]
-                return (token_code, token_text, self.token_dict[token_code])
+                #print self.token_dict[token_code]
+                # NOTE: checks res_word, changes third part of tuple if True
+                if self.ResCheck(token_text):
+                    return (token_code, token_text, token_text)
+                else:
+                    return (token_code, token_text, self.token_dict[token_code])
 
+            # just in case
             else:
                 print("action table has wrong value")
                 raise Exception
