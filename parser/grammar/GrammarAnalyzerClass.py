@@ -275,3 +275,13 @@ class GrammarAnalyzerClass:
           # NOTE: debugging print
           #print "the elem:\t", elem, "in:\n", self.followSet[self.LHS[p]]
           self.predictTable[self.LHS[p]].update({elem : p })
+
+  # runs all the methods to populate the data members
+  def populateSets(self):
+    self.markLambda()
+    self.fillFirstSet()
+    # NOTE: start symbol hard-coded here
+    st_sym = "<systemGoal>"
+    self.fillFollowSet(st_sym)
+    self.fillPredictSet()
+    self.tableGenerator()
