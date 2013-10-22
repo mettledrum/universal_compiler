@@ -1,6 +1,0 @@
-<E> -> <Prefix> ( <E> )
-<E> -> v <Tail>
-<Prefix> -> f
-<Prefix> -> lambda
-<Tail> -> + <E>
-<Tail> -> lambda

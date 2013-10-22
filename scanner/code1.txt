@@ -1,2 +1,0 @@
-begin A := BB + 314 + A; 		-- dumb comment
-end $
