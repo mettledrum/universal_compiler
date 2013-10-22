@@ -35,6 +35,7 @@ def test(prods, user_code_lines):
 
 # cleans that list of junk using token names from scanner
 # this should be a scanner function maybe
+# gets rid of 'EmptySpace' and 'Comment'
 def cleaner(token_list):
     while 'EmptySpace' in token_list:
         token_list.remove('EmptySpace')

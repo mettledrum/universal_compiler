@@ -1,6 +1,11 @@
 
 # has instance of grammarAnalyzer and Scanner
 class ParserClass:
+
+  # takes cleaned scanner token list
+  def __init__(self, cleaned_token_list):
+    self.scan_list = cleaned_token_list
+
   # uses the grammar table to find production table portion
   # pushes and pops on the stack
   # NOTE: uses the Scanner to get the next values
