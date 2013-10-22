@@ -35,6 +35,19 @@ def test(prods):
     print "\npredictSet:"
     for elem in ga.predictSet.iteritems():
         print elem
+        
+    # run tableGen, T(X,a)
+    ga.tableGenerator()
+    print "\ntable:"
+    for elem in ga.predictTable.iteritems():
+      print elem
+
+    # test accessing an elem of tableGenerator
+    #print ga.predictTable["<statement>"]["read"]
+
+    # test the LLDriver
+    #print "\ndriver:"
+    #ga.LLDriver(st_sym)
 
 # get file name with productions, run test with productions string
 if __name__ == '__main__':

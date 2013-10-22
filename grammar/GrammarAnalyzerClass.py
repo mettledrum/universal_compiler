@@ -49,6 +49,9 @@ class GrammarAnalyzerClass:
     # table of productions and rules
     self.predictTable = defaultdict(dict)
 
+    # Stack for parser
+    self.parserStack = []
+
   # remove duplicates of lists using set functions
   # helps constructor
   # NOTE: not sure if 'lambda' should be in certain lists
@@ -269,6 +272,33 @@ class GrammarAnalyzerClass:
         self.predictTable[self.LHS[p]].pop('lambda')
         # add terminal pairs in
         for elem in self.followSet[self.LHS[p]]:
-          print "the elem:\t", elem, "in:\n", self.followSet[self.LHS[p]]
+          # NOTE: debugging print
+          #print "the elem:\t", elem, "in:\n", self.followSet[self.LHS[p]]
           self.predictTable[self.LHS[p]].update({elem : p })
+
+"""--------------------------------------------------------------------------"""
+
+  def LLDriver(self, start_symbol):
+    # put starting symbol into stack
+    self.parserStack.append(start_symbol)
+    #
+    while len(self.parserStack) != 0:
+      if self.parserStack[-1] in self.nonTerms:
+        # temporarily holds elements from table
+        _tempL = []
+        # stuff list with elems
+        for elem in self.predictTable[self.parserStack[-1]]:
+          _tempL.append(elem)
+        # reverse temp
+        _tempL.reverse()
+
+        # put into stack in reverse order
+        for el in _tempL:
+          self.parserStack.append(el)
+
+        # stack top is a terminal symbol
+        else:
+          
+
+
 

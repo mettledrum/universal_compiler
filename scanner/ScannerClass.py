@@ -7,7 +7,7 @@ import string
 
 # takes the code string in constructor that has an EOF on it
 # uses both a state table and action table to consume and
-## figure out the tokens
+#  figure out the tokens
 class ScannerClass:
     # takes string to be tokenized
     def __init__(self, code_string):
@@ -120,6 +120,7 @@ class ScannerClass:
 
     # action table and key drive its next move
     # state 0 means keep going, Scanner makes recursive call
+    # NOTE: returns at triple with (token_code, text_from_buffer, token_name)
     def Scanner(self):
         # initial state
         state = 0
@@ -157,7 +158,7 @@ class ScannerClass:
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
                 print self.token_dict[token_code]              
-                return (token_code, token_text)
+                return (token_code, token_text, self.token_dict[token_code])
 
             elif current_action == "HaltNoAppend":
                 token_code = self.LookUpCode(state, self.CurrentChar())
@@ -166,7 +167,7 @@ class ScannerClass:
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
                 print self.token_dict[token_code] 
-                return (token_code, token_text)
+                return (token_code, token_text, self.token_dict[token_code])
 
             elif current_action == "HaltReuse":
                 token_code = self.LookUpCode(state, self.CurrentChar())
@@ -174,7 +175,7 @@ class ScannerClass:
                 if token_code == 0:
                     (token_code, token_text) = self.Scanner()
                 print self.token_dict[token_code]
-                return (token_code, token_text)
+                return (token_code, token_text, self.token_dict[token_code])
 
             else:
                 print("action table has wrong value")
