@@ -36,6 +36,7 @@ class ParserClass:
       _X = self.stack.pop()
       _a = self.tokenLookUp(self.scan_list[0][2])
 
+      # debugging print
       print "X: ", _X, "\ta: ", _a
 
       # nonTerminal check, put on stack in reverse order
@@ -59,12 +60,10 @@ class ParserClass:
         for i in range(len(_right_side)):
           self.stack.append(_right_side.pop())
 
-        # oust the lambdas, (they mean NOTHING here)
-
-
         # NOTE: debugging print
         print "stack: ", self.stack, "\n"
 
+        # debugging print
         #raw_input("pause")
 
       # _X is in Terms, meaning it's a terminal symbol

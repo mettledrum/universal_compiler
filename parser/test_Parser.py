@@ -6,7 +6,7 @@ from scanner.ScannerClass import ScannerClass
 from ParserClass import ParserClass
 
 # instantiates scanner, ga,
-# passes CLEANED scanner list to parser
+# passes CLEANED scanner list to instantiated parser
 def test(prods, user_code_lines):
     # instantiate ga
     ga = GrammarAnalyzerClass(prods)
