@@ -49,9 +49,6 @@ class GrammarAnalyzerClass:
     # table of productions and rules
     self.predictTable = defaultdict(dict)
 
-    # Stack for parser
-    self.parserStack = []
-
   # remove duplicates of lists using set functions
   # helps constructor
   # NOTE: not sure if 'lambda' should be in certain lists
@@ -277,11 +274,10 @@ class GrammarAnalyzerClass:
           self.predictTable[self.LHS[p]].update({elem : p })
 
   # runs all the methods to populate the data members
-  def populateSets(self):
+  # NOTE: start_symbol can be changed here
+  def populateSets(self, start_sym="<systemGoal>"):
     self.markLambda()
     self.fillFirstSet()
-    # NOTE: start symbol hard-coded here
-    st_sym = "<systemGoal>"
-    self.fillFollowSet(st_sym)
+    self.fillFollowSet(start_sym)
     self.fillPredictSet()
     self.tableGenerator()

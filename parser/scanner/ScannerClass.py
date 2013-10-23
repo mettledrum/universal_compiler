@@ -116,8 +116,8 @@ class ScannerClass:
 
     # see if token is in self.res_words[]
     def CheckExceptions(self, token_code, token_text):
-        if token_text in self.res_words:
-            print("reserved word:", token_text, "found")
+        #if token_text in self.res_words:
+            #print("reserved word:", token_text, "found")
             # NOTE: then make changes to token_code here
         return token_code
 

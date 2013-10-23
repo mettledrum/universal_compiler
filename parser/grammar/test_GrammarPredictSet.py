@@ -8,6 +8,7 @@ def test(prods):
     ga = GrammarAnalyzerClass(prods)
 
     # runs everything to get all the sets populated
+    # NOTE: default used for starting symbol here
     ga.populateSets()
 
     print "Productions:\t", ga.prodList
