@@ -1,13 +1,11 @@
 declare A integer
 declare BB integer
-declare 314 integer
 declare Temp&1 integer
 add 314 A Temp&1
 declare Temp&2 integer
 add BB Temp&1 Temp&2
 store Temp&2 A
 declare C integer
-declare 342 integer
 declare Temp&3 integer
 add 342 BB Temp&3
 store Temp&3 C

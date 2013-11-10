@@ -1,5 +1,7 @@
 # Andrew Hoyle
 
+import re                            # for checking if digit
+
 # changes from parser to compiler are marked 
 #  with "COMP#"
 
@@ -92,8 +94,9 @@ class CompilerClass:
     self.var_table.append(s)
 
   # put in table and declare in machine code output IF hasn't been made yet
+  #  AND if it is not a digit
   def CheckId(self, s):
-      if s not in self.var_table:
+      if s not in self.var_table and not re.match('^[0-9]+$', s):
           self.Enter(s)
           self.out.write("declare " + s + " integer\n")
 
