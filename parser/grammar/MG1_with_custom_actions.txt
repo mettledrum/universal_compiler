@@ -1,0 +1,23 @@
+<program> -> #Start() begin <stmtList> end
+<stmtList> -> <statement> <statementTail>
+<statementTail> -> <stmtList>
+<statementTail> -> lambda
+<statement> -> <ident> := <expression> ; #Assign(0,2)
+<statement> -> read ( <idList> ) ;
+<statement> -> write ( <exprList> ) ;
+<idList> -> <ident> #ReadId(0) <idTail>
+<idTail> -> , <idList>
+<idTail> -> lambda
+<exprList> -> <expression> #WriteExpr(0) <expressionTail>
+<expressionTail> -> , <exprList>
+<expressionTail> -> lambda
+<expression> -> <primary> #Copy(0,1) <primaryTail> #Copy(1,-1)
+<primaryTail> -> <addOp> <expression> #GenInfix(0,1)
+<primaryTail> -> lambda
+<primary> -> ( <expression> ) #Copy(1,-1)
+<primary> -> <ident> #Copy(0,-1)
+<primary> -> IntLiteral #ProcessLiteral()
+<addOp> -> + #ProcessOp()
+<addOp> -> - #ProcessOp()
+<ident> -> Id #ProcessId()
+<systemGoal> -> <program> $ #Finish()

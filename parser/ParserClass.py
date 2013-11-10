@@ -26,7 +26,7 @@ class ParserClass:
 
   # uses the ga grammar table to find production table portion
   # pushes and pops on the stack
-  # NOTE: sytem_goal has default
+  # NOTE: system_goal has default
   def LLDriver(self, start_symbol="<systemGoal>"):
     self.stack.append(start_symbol)
 
@@ -46,7 +46,7 @@ class ParserClass:
         _prod_numb = self.ga.predictTable[_X][_a]
 
         # NOTE: debugging prints
-        print _prod_numb
+        print "production #: ", _prod_numb
         print self.ga.prodList[_prod_numb]
         print self.ga.RHS[_prod_numb]
 
@@ -63,7 +63,7 @@ class ParserClass:
         # NOTE: debugging print
         print "stack: ", self.stack, "\n"
 
-        # debugging print
+        # NOTE: debugging print
         #raw_input("pause")
 
       # _X is in Terms, meaning it's a terminal symbol

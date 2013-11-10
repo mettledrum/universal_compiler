@@ -15,8 +15,7 @@ class GrammarAnalyzerClass:
   # constructor, takes pr, generates data member lists
   # takes string representing productions
   def __init__(self, pr):
-    # break up by '\n'
-    self.prodList = string.split(pr, '\n')
+    self.prodList = string.split(pr,'\n')
     # get rid of ''(s) from last line(s)
     while '' in self.prodList:
       self.prodList.remove('')
@@ -24,8 +23,11 @@ class GrammarAnalyzerClass:
     # put values into LHS[], RHS[[]], and allSymbols[] 
     self.LHS = []
     self.RHS = []
+    self.RHS_with_actions = []              # COMP
     self.allSymbols = []
+    self.actions = []                       # COMP
     self.getSymbols()
+    self.takeOutRHSactions()                # COMP
 
     # look for '<' in elements
     self.Terms = []
@@ -65,8 +67,19 @@ class GrammarAnalyzerClass:
     #self.nonTerms.discard('lambda')
     self.nonTerms = list(self.nonTerms)
 
+  # COMP takes action symbols out of RHS, leaves in
+  #  RHS_with_actions
+  # helps constructor
+  def takeOutRHSactions(self):
+    for prod in self.RHS_with_actions:
+      _rhs = []
+      for tok in prod:
+        if tok[0] != '#':
+          _rhs.append(tok)
+      self.RHS.append(_rhs)
+
   # takes list of productions, breaks up by ' '
-  # puts in RHS and LHS lists
+  # puts in RHS_with_actions and LHS lists
   # helps constructor
   def getSymbols(self):
     for p in self.prodList:
@@ -76,17 +89,20 @@ class GrammarAnalyzerClass:
       self.allSymbols.append(_symbols[0])
 
       # put list of symbols into RHS
-      self.RHS.append(_symbols[2:])
+      self.RHS_with_actions.append(_symbols[2:])
 
       for s in _symbols[2:]:
         self.allSymbols.append(s)
 
-  # looks for '<' in elems' first place, means its a non-term
+  # looks for '<' in elems' first place, means it's a non-term
+  # COMP - looks for '#' makes it an action
   # helps constructor
   def getNT(self):
     for s in self.allSymbols:
       if s[0] == '<':
         self.nonTerms.append(s)
+      elif s[0] == '#':
+        self.actions.append(s)
       else:
         self.Terms.append(s)
 
