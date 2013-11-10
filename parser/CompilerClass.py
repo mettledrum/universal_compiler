@@ -146,7 +146,8 @@ class CompilerClass:
 
   # TODO: must get info from scanner?
   def ProcessOp(self):
-    self.SS[self.L] = SemRec('+')
+    #self.SS[self.L] = SemRec('+')
+    self.SS[self.L] = SemRec(self.SS[self.C - 1].extract)    
 
   # if v == -1, this means self.L
   def Copy(self, source_idx, target_idx):

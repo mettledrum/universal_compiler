@@ -7,6 +7,6 @@ add BB Temp&1 Temp&2
 store Temp&2 A
 declare C integer
 declare Temp&3 integer
-add 342 BB Temp&3
+sub 342 BB Temp&3
 store Temp&3 C
 halt
