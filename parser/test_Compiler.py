@@ -28,10 +28,8 @@ def test(prods, user_code_lines):
     while sc.code[0] != '$':
         scan_out.append(sc.Scanner())
 
-    # NOTE: cleans scanner list
-    # TODO: figure out why must run twice
+    # NOTE: cleans scanner list of undesirable tokens
     scan_out_clean = cleaner(scan_out)
-    scan_out_clean = cleaner(scan_out_clean)
     print "\nScanner:\t", scan_out_clean, '\n'
 
     # give CLEANED scanner list to compiler object
@@ -63,12 +61,14 @@ def test(prods, user_code_lines):
 # this should be a scanner function maybe
 # gets rid of 'EmptySpace' and 'Comment'
 def cleaner(token_list):
-    for el in token_list:
-        if el[2] == 'Comment':
-            token_list.remove(el)
-    for el in token_list:
-        if el[2] == 'EmptySpace':
-            token_list.remove(el)
+    # do it a lot
+    for c in range(0,len(token_list)):
+        for el in token_list:
+            if el[2] == 'Comment':
+                token_list.remove(el)
+        for el in token_list:
+            if el[2] == 'EmptySpace':
+                token_list.remove(el)
     return token_list
 
 # get file name with productions, run test with productions string

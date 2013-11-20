@@ -17,6 +17,10 @@ begin
 					begin
 						yy := 99999999;
 						read(xxx, uuu);
+							begin
+								-- toppest block
+								vvvvv := 1997;
+							end
 					end
 				end
 
@@ -29,10 +33,16 @@ begin
 				end
 
 				begin
-					B := g - 123;
+					B := g - 123; --works!
 					read(B);
 				end
 			end
+
+			-- nasty comment!
+			CCC := 99;
+
 		end
 	end
+	-- a nice comment to make up for it!
+	A := 123;
 end $

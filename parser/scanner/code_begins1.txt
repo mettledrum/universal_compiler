@@ -1,12 +1,17 @@
-begin
+begin -- this is really sophisticated!!!
 	begin
 		write(A);
 		A := 1 - 22;
+		C := A;
 	end
 
-	begin
-		B := g - 123;
-		read(B);
-		A := B -99;		-- oh yeah!
+	begin -- should redeclare A
+		A := B - 99;		-- oh yeah!
 	end
+
+	begin -- same for C
+		C := 56;
+	end
+	--nasty comment
+
 end $
