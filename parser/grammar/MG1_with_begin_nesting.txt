@@ -1,4 +1,4 @@
-<program> -> #Start() begin <stmtList> end
+<program> -> #BlockPush() begin <stmtList> end #BlockPop()
 <stmtList> -> <statement> <statementTail>
 <statementTail> -> <stmtList>
 <statementTail> -> lambda

@@ -5,6 +5,8 @@ add 314 A Temp&1
 declare Temp&2 integer
 add BB Temp&1 Temp&2
 store Temp&2 A
+declare A integer
+declare BB integer
 declare Temp&3 integer
 add 314 A Temp&3
 declare Temp&4 integer
@@ -16,6 +18,7 @@ declare result integer
 declare Temp&5 integer
 sub aaa 543 Temp&5
 store Temp&5 result
+declare A integer
 store 345 A
 declare b integer
 declare Temp&6 integer
@@ -37,6 +40,7 @@ declare vvvvv integer
 store 1997 vvvvv
 declare my_var integer
 write my_var integer
+declare A integer
 write A integer
 declare Temp&8 integer
 sub 1 22 Temp&8

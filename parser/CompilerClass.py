@@ -1,6 +1,7 @@
 # Andrew Hoyle
 
 import re                            # for checking if digit
+from SymbolTable import SymbolTable
 
 # changes from parser to compiler are marked 
 #  with "COMP#"
@@ -43,9 +44,8 @@ class SemRec:
 # has instance of grammarAnalyzer and Scanner
 # NOTE: coupled with ga function names
 class CompilerClass:
-
   # takes cleaned scanner token list and ga
-  def __init__(self, cleaned_token_list, gramm_anal, write_stream):
+  def __init__(self, cleaned_token_list, gramm_anal, write_stream, sym_tab_size):
     # NOTE: triple: (action #, buffer value, token_name)
     self.scan_list = cleaned_token_list
     self.ga = gramm_anal
@@ -73,7 +73,7 @@ class CompilerClass:
                         'RParen':')', 'MinusOp':'-', 'EOF':'$' }    
 
     # COMP - keeping track of temp names
-    self.var_table = []
+    self.var_table = SymbolTable(sym_tab_size)
     self.temp_count = 0
 
     # COMP - simpler scanner list printing
@@ -86,17 +86,28 @@ class CompilerClass:
   def Start(self):
     return
 
+  # for variable scoping
+  def BlockPush(self):
+    # inc block_depth count
+    self.var_table.push_block()
+
+  # variable scoping
+  def BlockPop(self):
+    # delete records from it, dec block_depth count
+    self.var_table.pop_block()
+
+  # final part
   def Finish(self):
     self.out.write("halt")
 
   # add to var_table
   def Enter(self, s):
-    self.var_table.append(s)
+    self.var_table.insert_st(s)
 
   # put in table and declare in machine code output IF hasn't been made yet
   #  AND if it is not a digit
   def CheckId(self, s):
-      if s not in self.var_table and not re.match('^[0-9]+$', s):
+      if not self.var_table.look_up(s) and not re.match('^[0-9]+$', s):
           self.Enter(s)
           self.out.write("declare " + s + " integer\n")
 

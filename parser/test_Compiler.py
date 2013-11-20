@@ -33,7 +33,8 @@ def test(prods, user_code_lines):
     print "\nScanner:\t", scan_out_clean, '\n'
 
     # give CLEANED scanner list to compiler object
-    comp = CompilerClass(scan_out_clean, ga, 'compiler_output.txt')
+    _hash_width = 23
+    comp = CompilerClass(scan_out_clean, ga, 'compiler_output.txt', _hash_width)
 
     # NOTE: debugging print
     print "Productions:\t", ga.prodList
