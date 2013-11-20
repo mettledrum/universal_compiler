@@ -25,6 +25,7 @@ def test():
 		print "string space:", st.string_space
 		print "write position:", st.pos
 		print "block depth", st.block_depth, "\n"
+		print "a exists?: ", st.look_up('a')
 
 if __name__ == '__main__':
 	test()

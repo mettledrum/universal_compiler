@@ -64,6 +64,7 @@ class SymbolTable:
 					if trip[0] < _min_string_idx:
 						_min_string_idx = trip[0]
 					_del_us.append(trip)
+			# list of trips to remove
 			for t in _del_us:
 				stack.remove(t)
 
@@ -86,7 +87,7 @@ class SymbolTable:
 				# check depth
 				if _dep == self.block_depth:
 					# pull value from string space
-					_str = ''.join(self.string_space[_beg:_len])
+					_str = ''.join(self.string_space[_beg:(_beg+_len)])
 					# compare strings
 					if _str == st:
 						return True
