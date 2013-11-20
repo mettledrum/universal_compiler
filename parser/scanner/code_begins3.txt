@@ -1,0 +1,53 @@
+begin -- this is really sophisticated!!!
+	begin
+		write(A);
+		A := 1 - 22;
+		C := A;
+	end
+
+	begin -- should redeclare A
+		A := B - 99;		-- oh yeah!
+	end
+
+	begin
+		panda := 78;
+
+		begin
+			panda := 9999;
+
+			begin
+				panda :=8888888;
+
+				begin
+					shoe := shoe - 1;
+
+
+				end
+			end
+
+
+			begin
+				--comment oh yeah
+				begin
+					read(dances_with_wolves);
+					write(bad_essay);
+					begin
+						begin
+							begin
+								a := 234234234234234;
+							end
+						end
+					end
+				end
+			end
+
+
+		end
+	end
+
+	begin -- same for C
+		C := 56;
+	end
+	--nasty comment
+
+end $

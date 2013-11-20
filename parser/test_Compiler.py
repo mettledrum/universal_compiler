@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # grammar production rules
     f_g = open('grammar/MG1_with_begin_nesting.txt', 'r')
     # scanner code ending with EOF symbol = '$'
-    f_s = open('scanner/code_begins2.txt', 'r')
+    f_s = open('scanner/code_begins1.txt', 'r')
     prods = f_g.read()
     user_code = f_s.read()
 

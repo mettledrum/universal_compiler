@@ -302,10 +302,10 @@ class CompilerClass:
         print "parse stack error, unknown type"
         raise Exception
 
-      # NOTE: debugging print pause
-      #if _counter == 5:
-        #raw_input("pause")
-        #_counter = 0
+      # show contents of var_table
+      print "hash_table:", self.var_table.h_table
+      print "string_space:", self.var_table.string_space
+      raw_input("paused, press any key to cont.")
 
   # COMP - helper for restoring index values 
   def restoreIdx(self, eop):

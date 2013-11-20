@@ -1,57 +1,15 @@
 declare A integer
-declare BB integer
-declare Temp&1 integer
-add 314 A Temp&1
-declare Temp&2 integer
-add BB Temp&1 Temp&2
-store Temp&2 A
-declare A integer
-declare BB integer
-declare Temp&3 integer
-add 314 A Temp&3
-declare Temp&4 integer
-add BB Temp&3 Temp&4
-store Temp&4 A
-declare aaa integer
-store 123 aaa
-declare result integer
-declare Temp&5 integer
-sub aaa 543 Temp&5
-store Temp&5 result
-declare A integer
-store 345 A
-declare b integer
-declare Temp&6 integer
-add 123 A Temp&6
-store Temp&6 b
-declare shoe integer
-write shoe integer
-declare y integer
-declare Temp&7 integer
-sub 345 1 Temp&7
-store Temp&7 y
-declare yy integer
-store 99999999 yy
-declare xxx integer
-read xxx integer
-declare uuu integer
-read uuu integer
-declare vvvvv integer
-store 1997 vvvvv
-declare my_var integer
-write my_var integer
-declare A integer
 write A integer
-declare Temp&8 integer
-sub 1 22 Temp&8
-store Temp&8 A
+declare Temp&1 integer
+sub 1 22 Temp&1
+store Temp&1 A
+declare C integer
+store A C
+declare A integer
 declare B integer
-declare g integer
-declare Temp&9 integer
-sub g 123 Temp&9
-store Temp&9 B
-read B integer
-declare CCC integer
-store 99 CCC
-store 123 A
+declare Temp&2 integer
+sub B 99 Temp&2
+store Temp&2 A
+declare C integer
+store 56 C
 halt
