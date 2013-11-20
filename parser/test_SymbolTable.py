@@ -9,7 +9,8 @@ def test():
 	print "hash table:", st.h_table
 	print "string space:", st.string_space
 	print "write position:", st.pos
-	print "block depth", st.block_depth, "\n"
+	print "block depth", st.block_depth
+	print "\'a\' exists?: ", st.look_up('a'), "\n"
 
 	while (True):
 		r = raw_input("pop/push/string: ")
@@ -24,8 +25,8 @@ def test():
 		print "hash table:", st.h_table
 		print "string space:", st.string_space
 		print "write position:", st.pos
-		print "block depth", st.block_depth, "\n"
-		print "a exists?: ", st.look_up('a')
+		print "block depth", st.block_depth
+		print "\'a\' exists?: ", st.look_up('a'), "\n"
 
 if __name__ == '__main__':
 	test()

@@ -1,7 +1,6 @@
 # Andrew Hoyle
 
 # symbol table incorporating custom has function
-
 class SymbolTable:
 	def __init__(self, size):
 		# mod for hash function "circling"
@@ -76,7 +75,7 @@ class SymbolTable:
 		self.pos = len(self.string_space)
 
 	# boolean, checks to see of it exists in current
-	#  block scope and string space
+	#  block scope AND string space
 	def look_up(self, st):
 		for stack in self.h_table:
 			for trip in stack:

@@ -1,0 +1,12 @@
+begin
+	begin
+		write(A);
+		A := 1 - 22;
+	end
+
+	begin
+		B := g - 123;
+		read(B);
+		A := B -99;		-- oh yeah!
+	end
+end $

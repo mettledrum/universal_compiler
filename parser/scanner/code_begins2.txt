@@ -1,0 +1,38 @@
+begin
+	A := BB + 314 + A; 		-- dumb comment
+	begin
+		A := BB + 314 + A; 		-- dumb comment
+		aaa := 123;
+		result := aaa - 543;
+		-- crazy!
+		begin
+			--yes
+			begin
+				A := 345;
+				b := 123 + A;
+				write(shoe);
+				begin
+					y := 345 - 1; -- works I hope!
+
+					begin
+						yy := 99999999;
+						read(xxx, uuu);
+					end
+				end
+
+				--comment
+				write(my_var);
+
+				begin
+					write(A);
+					A := 1 - 22;
+				end
+
+				begin
+					B := g - 123;
+					read(B);
+				end
+			end
+		end
+	end
+end $
